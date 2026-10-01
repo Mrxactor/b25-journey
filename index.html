@@ -299,4 +299,25 @@ kbd{border:1px solid #4d5560;border-bottom-width:2px;border-radius:6px;padding:2
     <h2>Alla generationer.<br>En stadsdel.</h2>
     <div class="final-grid">
       <div><b>UNGDOMAR</b><br><span style="color:#9ea8b4">THE BROOKLYN BODEGA</span></div>
-      <div><b>GEMENSKAP</b><br><span styl
+      <div><b>GEMENSKAP</b><br><span style="color:#9ea8b4">BISKOPSGÅRDEN CF</span></div>
+      <div><b>HISTORIA</b><br><span style="color:#9ea8b4">BIBBI</span></div>
+    </div>
+    <p class="tagline">Från Biskopsgården. För Biskopsgården.</p>
+    <p style="margin-top:48px;color:#6f7a86;letter-spacing:.16em;text-transform:uppercase;font-size:.75rem">Del 2 fortsätter här</p>
+  </div>
+</section>
+
+<script>
+const sections=[...document.querySelectorAll('section')];
+const nav=document.querySelector('.navdots');
+sections.forEach((s,i)=>{
+  const a=document.createElement('a'); a.href='#'+s.id; a.title=(i+1)+' / '+sections.length; nav.appendChild(a);
+});
+const dots=[...nav.children];
+const revealObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+const secObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const i=sections.indexOf(e.target);
+      dots.forEach((d
