@@ -176,6 +176,18 @@ kbd{border:1px solid #4d5560;border-bottom-width:2px;border-radius:6px;padding:2
   section{min-height:auto;page-break-after:always}
   .reveal{opacity:1;transform:none}
 }
+
+/* Fix road line so it starts below the heading */
+#why .road{
+  top: clamp(150px, 20vh, 230px);
+  bottom: 8px;
+}
+@media(max-width:850px){
+  #why .road{
+    top: clamp(110px, 18vh, 170px);
+  }
+}
+
 </style>
 </head>
 <body>
