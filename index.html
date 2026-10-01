@@ -320,4 +320,28 @@ const secObs=new IntersectionObserver(es=>{
   es.forEach(e=>{
     if(e.isIntersecting){
       const i=sections.indexOf(e.target);
-      dots.forEach((d
+      dots.forEach((d,j)=>d.classList.toggle('active',i===j));
+    }
+  })
+},{threshold:.5});
+sections.forEach(s=>secObs.observe(s));
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('progress').style.width=((scrollY/h)*100)+'%';
+});
+document.addEventListener('keydown',e=>{
+  if(!['ArrowDown','ArrowRight','PageDown','ArrowUp','ArrowLeft','PageUp'].includes(e.key))return;
+  e.preventDefault();
+  const center=scrollY+innerHeight*.5;
+  let idx=0;
+  sections.forEach((s,i)=>{if(s.offsetTop<=center)idx=i});
+  const f=['ArrowDown','ArrowRight','PageDown'].includes(e.key)?Math.min(idx+1,sections.length-1):Math.max(idx-1,0);
+  sections[f].scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('fsBtn').addEventListener('click',async()=>{
+  if(!document.fullscreenElement) await document.documentElement.requestFullscreen?.();
+  else await document.exitFullscreen?.();
+});
+</script>
+</body>
+</html>
